@@ -3,7 +3,7 @@ from fastapi import FastAPI
 app = FastAPI()
 
 # Problem 1: Majority Element
-def find_majority_element(number_string: str) -> int:
+def find_majority_element(number_string):
     numbers = number_string.split(',')
     count_dict = {}
     
@@ -19,7 +19,7 @@ def find_majority_element(number_string: str) -> int:
             return int(number)
 
 @app.get("/majority-element")
-def get_majority_element(number_string: str):
+def get_majority_element(number_string):
     majority_element = find_majority_element(number_string)
     return {"majority_element": majority_element}
 
@@ -58,7 +58,7 @@ class LinkedList:
         for data in result:
             self.append(data)
 
-def create_linked_list_from_string(number_string: str) -> LinkedList:
+def create_linked_list_from_string(number_string):
     numbers = number_string.split(',')
     linked_list = LinkedList()
     for number in numbers:
@@ -66,7 +66,7 @@ def create_linked_list_from_string(number_string: str) -> LinkedList:
     return linked_list
 
 @app.get("/sort-linked-list")
-def get_sorted_linked_list(number_string: str, order: str):
+def get_sorted_linked_list(number_string):
     linked_list = create_linked_list_from_string(number_string)
     if order == "ascending":
         linked_list.sort(ascending=True)
@@ -78,5 +78,4 @@ def get_sorted_linked_list(number_string: str, order: str):
     sorted_list = linked_list.to_list()
     return {"sorted_list": sorted_list}
 
-# To run the FastAPI app:
-# uvicorn filename:app --reload
+
